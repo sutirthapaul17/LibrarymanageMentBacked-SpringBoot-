@@ -4,6 +4,7 @@ import com.example.LibraryManagement.Dto.BookDto.BookRequestDto;
 import com.example.LibraryManagement.Dto.BookDto.BookResponseDto;
 import com.example.LibraryManagement.Entity.Book;
 import com.example.LibraryManagement.Service.BookService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +19,13 @@ public class BookController {
     private final BookService bookService;
 
     @PostMapping
-    public BookResponseDto addBook(@RequestBody BookRequestDto book) {
+    public BookResponseDto addBook(@Valid @RequestBody BookRequestDto book) {
         return bookService.addBook(book);
     }
 
     @PutMapping("/{id}")
     public BookResponseDto updateBook(@PathVariable Long id,
-                           @RequestBody BookRequestDto book) {
+                           @Valid @RequestBody BookRequestDto book) {
         return bookService.updateBook(id, book);
     }
 

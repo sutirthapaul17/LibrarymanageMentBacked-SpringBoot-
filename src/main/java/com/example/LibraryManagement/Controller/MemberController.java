@@ -4,6 +4,7 @@ import com.example.LibraryManagement.Dto.MemberDto.MemberRequestDto;
 import com.example.LibraryManagement.Dto.MemberDto.MemberResponseDto;
 import com.example.LibraryManagement.Entity.Member;
 import com.example.LibraryManagement.Service.MemberService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,13 +18,13 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping
-    public MemberResponseDto addMember(@RequestBody MemberRequestDto member) {
+    public MemberResponseDto addMember(@Valid @RequestBody MemberRequestDto member) {
         return memberService.addMember(member);
     }
 
     @PutMapping("/{id}")
     public MemberResponseDto updateMember(@PathVariable Long id,
-                               @RequestBody MemberRequestDto member) {
+                               @Valid @RequestBody MemberRequestDto member) {
         return memberService.updateMember(id, member);
     }
 
